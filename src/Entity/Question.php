@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Lesson;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,7 +18,7 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?lesson $lesson = null;
+    private ?Lesson $lesson = null;
 
     public function getId(): ?int
     {

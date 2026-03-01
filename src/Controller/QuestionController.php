@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Question;
-use App\Entity\Lesson;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,8 +16,8 @@ final class QuestionController extends AbstractController
     public function index(EntityManagerInterface  $entityManager, int $id): Response
     {
 
-    
-        $question = $entityManager->getRepository(Lesson::class)->find($id);
+        $repo = $entityManager->getRepository(Question::class);
+        $question = $repo->findById($id);
         
         if (!$question) {
             throw $this->createNotFoundException(
@@ -26,21 +25,6 @@ final class QuestionController extends AbstractController
             );
         }
 
-        return new Response('Check out this great product: ' . $question->getDescription());
+        return new Response('Check out this great product: ' . $question->getText());
     }
-
-    /* #[Route('/product', name: 'create_product')]
-    public function createProduct(EntityManagerInterface $entityManager): Response
-    {
-        $product = new Question();
-        $product->setText('Keyboard');
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($product);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        return new Response('Saved new product with id '.$product->getId());
-    } */
 }

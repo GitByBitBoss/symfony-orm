@@ -16,6 +16,16 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findById(int $id): ?Question
+    {
+        return $this->createQueryBuilder('q')
+                ->andWhere('q.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult()
+            ;
+    }
+
     //    /**
     //     * @return Question[] Returns an array of Question objects
     //     */
