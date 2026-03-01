@@ -1,4 +1,3 @@
-// src/DataFixtures/AppFixtures.php
 namespace App\DataFixtures;
 
 use App\Entity\Question;
