@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Neue Frage{% endblock %}
+
+{% block body %}
+    <h1>Neue Frage erstellen</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.text) }}
+        {{ form_row(form.lesson) }}
+        {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
