@@ -17,14 +17,11 @@ final class QuestionController extends AbstractController
     {
 
         $repo = $entityManager->getRepository(Question::class);
-        $question = $repo->findById($id);
+        $question = $repo->find($id);
         
-        if (!$question) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
+        return $this->render('details.html.twig', [
+            'question' => $question,
+        ]);
 
-        return new Response('Check out this great product: ' . $question->getText());
     }
 }
