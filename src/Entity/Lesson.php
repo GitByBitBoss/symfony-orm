@@ -30,9 +30,6 @@ class Lesson
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'lesson')]
     private Collection $questions;
 
-    #[ORM\Column]
-    private ?bool $done = null;
-
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -105,18 +102,6 @@ class Lesson
                 $question->setLesson(null);
             }
         }
-
-        return $this;
-    }
-
-    public function isDone(): ?bool
-    {
-        return $this->done;
-    }
-
-    public function setDone(bool $done): static
-    {
-        $this->done = $done;
 
         return $this;
     }
